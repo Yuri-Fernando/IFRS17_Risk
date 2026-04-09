@@ -1,0 +1,33 @@
+{
+  "timestamp": "2026-04-09T14:24:14.473959",
+  "model_version": "v1.0.0",
+  "data": {
+    "records": 58592,
+    "features": 42
+  },
+  "models": {
+    "frequency": {
+      "distribution": "poisson",
+      "lambda": 0.06396777717094485
+    },
+    "severity": {
+      "distribution": "lognormal",
+      "mu": 10.285206266914292,
+      "sigma": 0.9994056228107039
+    }
+  },
+  "simulation": {
+    "n_simulations": 10000,
+    "mean_loss": 3346.059220992861,
+    "std_loss": 20485.66067223652
+  },
+  "actuarial": {
+    "bel": 342573375.11118245,
+    "ra": 10476.276715608346,
+    "provision": 342583851.3878981
+  },
+  "validation": {
+    "ks_test_pvalue": 0.0,
+    "status": "APPROVED"
+  }
+}

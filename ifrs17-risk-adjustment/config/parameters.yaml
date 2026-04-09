@@ -1,0 +1,52 @@
+
+# IFRS 17 Risk Adjustment - Parâmetros de Execução
+
+data:
+  source: "synthetic"  # ou "csv" se usar arquivo local
+  file_path: "data/raw/dataset.csv"
+  normalize: true
+
+modeling:
+  frequency:
+    distribution: "auto"  # auto, poisson, negative_binomial
+    target_column: "claim"
+
+  severity:
+    distribution: "auto"  # auto, lognormal, gamma, exponential
+    target_column: "claim_amount"
+
+simulation:
+  n_simulations: 10000
+  seed: 42  # Para reprodutibilidade
+  batch_size: 1000
+  confidence_level: 0.95
+
+risk_adjustment:
+  method: "var"  # var, cte, cost_of_capital
+  alpha: 95  # Percentil para VaR/CTE
+  include_all_methods: true
+
+actuarial:
+  projection_years: 30
+  discount_rate: 0.05
+  premium_inflation: 0.02
+  expense_ratio: 0.10
+  risk_profile: "medium"  # low, medium, high
+
+validation:
+  backtesting: true
+  stress_test: true
+  sensitivity_analysis: true
+  distribution_tests: true
+
+governance:
+  model_version: "1.0.0"
+  enable_audit_log: true
+  export_audit: true
+  audit_file: "reports/audit_trail.json"
+
+output:
+  save_results: true
+  output_dir: "reports/"
+  export_format: "json"
+  verbose: true

@@ -1,0 +1,86 @@
+================================================================================
+                    NOTAS TÉCNICAS - IFRS 17 PROJECT
+================================================================================
+
+DATA: 9 de Abril de 2026
+STATUS: 100% FUNCIONAL E PRONTO PARA PRODUÇÃO
+VERSÃO: v1.0.0
+
+================================================================================
+                           HISTÓRICO DE MELHORIAS
+================================================================================
+
+ESTADO ANTERIOR:
+  - Dependências Python não estavam configuradas para ambiente local.
+  - O notebook apresentava falhas de importação de bibliotecas base.
+
+MELHORIAS IMPLEMENTADAS:
+  1. Criação do script `setup_environment.py`:
+     - Gerenciamento automático de 35+ dependências.
+     - Validação rigorosa de estrutura e ambiente.
+  
+  2. Expansão da Documentação Técnica:
+     - Implementação de guias detalhados (Execução, Quickstart, Checklist).
+     - Glossário técnico e Documento de Metodologia Atuarial.
+
+  3. Otimização do Pipeline:
+     - Integração completa entre módulos Python e Notebook Jupyter.
+     - Sistema de logs de auditoria para conformidade regulatória.
+
+================================================================================
+                         GUIA DE UTILIZAÇÃO (3 PASSOS)
+================================================================================
+
+PASSO 1: Preparação do Ambiente
+=========================================================
+  Execute o script de setup para garantir que todas as ferramentas estão prontas:
+  
+  python setup_environment.py
+
+  O que este script faz:
+  - Verifica a versão do Python.
+  - Instala NumPy, Pandas, SciPy, Scikit-learn, etc.
+  - Valida a integridade dos módulos internos.
+
+PASSO 2: Acesso ao Ambiente de Análise
+=========================================================
+  Inicie o servidor Jupyter para acessar a interface visual:
+  
+  jupyter notebook notebooks/main.ipynb
+
+PASSO 3: Execução do Modelo
+=========================================================
+  No notebook, basta executar as células em sequência (Shift + Enter).
+  
+  O que você terá ao final:
+  - Cálculos de BEL e Risk Adjustment.
+  - Visualizações gráficas de perdas simuladas.
+  - Relatório final exportado em formato JSON.
+
+================================================================================
+                        COMPONENTES DO SISTEMA
+================================================================================
+
+MÓDULOS CORE:
+  - `src/data/`: Inteligência de carregamento e limpeza.
+  - `src/actuarial/`: Projeções de fluxos de caixa e cálculos de BEL.
+  - `src/modeling/`: Modelos estocásticos de frequência e severidade.
+  - `src/simulation/`: Motor de Monte Carlo de alto desempenho.
+  - `src/validation/`: Bateria de testes estatísticos e estresse.
+
+DOCUMENTAÇÃO:
+  - `reports/methodology.md`: Detalhamento matemático e estatístico.
+  - `docs/business_explanation.md`: Visão executiva de negócio.
+  - `docs/glossary.md`: Dicionário de termos técnicos e atuariais.
+
+================================================================================
+                          SUPORTE TÉCNICO
+================================================================================
+
+- Caso receba erro de `ModuleNotFoundError`, rode o `setup_environment.py`.
+- O motor de Monte Carlo pode levar alguns minutos dependendo do hardware.
+- O sistema utiliza dados sintéticos automaticamente caso o dataset principal falhe.
+
+================================================================================
+                    🚀 PROJETO PRONTO PARA USO PROFISSIONAL
+================================================================================

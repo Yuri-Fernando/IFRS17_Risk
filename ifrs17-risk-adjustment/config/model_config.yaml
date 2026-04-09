@@ -1,0 +1,69 @@
+
+# Configuração Técnica do Modelo
+
+model:
+  name: "IFRS17 Risk Adjustment Engine"
+  version: "1.0.0"
+  description: "Modelo atuarial para cálculo de Risk Adjustment conforme IFRS 17"
+  author: "Risk Modeling Team"
+  last_updated: "2024-01-01"
+
+methodology:
+  approach: "Decomposição Frequência-Severidade com Simulação Monte Carlo"
+  reference: "IFRS 17, Insurance Contracts"
+
+  frequency_severity:
+    description: "Decompõe agregação de perdas em frequência (N eventos) e severidade (X valor por evento)"
+    loss_distribution: "S = sum(Xi), i=1..N"
+
+  monte_carlo:
+    description: "Simula distribuição empírica de perdas agregadas"
+    iterations: 10000
+    method: "Recursive sampling"
+
+  risk_adjustment:
+    description: "Compensa incerteza não-financeira nos fluxos de caixa"
+    formula: "RA = VaR(alpha) - E[L]"
+    interpretation: "Diferença entre percentil e valor esperado"
+
+assumptions:
+  demographic:
+    mortality_table: "Brazilian experience"
+    lapse_model: "Age-duration dependent"
+    expense_assumption: "10% de prêmios"
+
+  economic:
+    discount_rate: 5.0  # percent
+    inflation: 2.0  # percent
+    risk_free_rate: 3.5  # percent
+
+  actuarial:
+    tail_probability: 0.95  # 95th percentile
+    projection_horizon: 30  # years
+    confidence_level: 0.95
+
+parameters:
+  frequency_poisson_lambda: "estimated from data"
+  severity_lognormal_mu: "estimated from data"
+  severity_lognormal_sigma: "estimated from data"
+  risk_adjustment_percentile: 95
+
+performance:
+  min_simulations: 5000
+  recommended_simulations: 10000
+  max_recommended_simulations: 50000
+
+  convergence_tolerance: 0.001
+  execution_time_target_seconds: 300
+
+constraints:
+  max_age: 120
+  min_premium: 0.01
+  max_lapse_rate: 0.99
+  min_survival_probability: 1e-6
+
+quality_gates:
+  r_squared_minimum: 0.70
+  ks_test_p_value_minimum: 0.05
+  backtesting_mape_maximum: 15.0
+  stress_test_impact_acceptable: "20% max"

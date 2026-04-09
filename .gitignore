@@ -1,0 +1,56 @@
+# Python ignore
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Jupyter Notebook
+.ipynb_checkpoints
+# We want to keep notebooks in this project
+# *.ipynb 
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+.claude/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data
+# By default, ignore processed data
+ifrs17-risk-adjustment/data/processed/*
+!ifrs17-risk-adjustment/data/processed/.gitkeep
+
+# We specifically WANT to include the raw dataset for this portfolio
+# ifrs17-risk-adjustment/data/raw/*
+# !ifrs17-risk-adjustment/data/raw/.gitkeep

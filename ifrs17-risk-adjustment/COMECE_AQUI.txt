@@ -1,0 +1,88 @@
+================================================================================
+                         GUIA DE INICIALIZAÇÃO - IFRS 17
+================================================================================
+
+ESTE PROJETO ESTÁ CONFIGURADO E OPERACIONAL.
+
+Siga os 3 passos abaixo para executar o pipeline completo de cálculo de Risk Adjustment.
+
+Tempo estimado: 15-20 minutos
+
+================================================================================
+                             PASSO 1 - SETUP
+================================================================================
+
+Abra o terminal (Command Prompt ou PowerShell) e navegue até a pasta do projeto:
+
+>>> cd "ifrs17-risk-adjustment"
+
+Execute o script de configuração:
+
+>>> python setup_environment.py
+
+O que será feito:
+  1. Verificação do ambiente Python 3.10+
+  2. Instalação automática de dependências científicas (NumPy, Pandas, etc.)
+  3. Validação da estrutura de pastas e módulos.
+
+Resultado esperado:
+  [OK] AMBIENTE PRONTO!
+
+================================================================================
+                          PASSO 2 - ABRIR NOTEBOOK
+================================================================================
+
+No mesmo terminal, execute:
+
+>>> jupyter notebook notebooks/main.ipynb
+
+Interface:
+  - O navegador abrirá automaticamente com o notebook do projeto.
+  - Caso não abra, acesse manualmente: http://localhost:8888
+
+================================================================================
+                        PASSO 3 - EXECUÇÃO DAS ETAPAS
+================================================================================
+
+No Jupyter Notebook, execute as células em ordem:
+
+1. Clique na primeira célula.
+2. Pressione: Shift + Enter.
+3. Repita para todas as etapas ou use "Run All" no menu.
+
+Fluxo Processado:
+  - Carregamento de dados históricos/sintéticos.
+  - Modelagem de Frequência e Severidade.
+  - Simulação de Monte Carlo (10.000 iterações).
+  - Cálculo de BEL e Risk Adjustment.
+  - Validação estatística e exportação de resultados.
+
+Resultado final esperado:
+  PIPELINE COMPLETO EXECUTADO COM SUCESSO
+
+================================================================================
+                        PRODUTOS GERADOS
+================================================================================
+
+Ao final da execução, você terá acesso a:
+
+[1] Relatório de Dados (`reports/result_final.json`):
+    Contém todas as métricas financeiras e parâmetros de modelo.
+
+[2] Visualizações Analíticas:
+    Gráficos de distribuição de perdas e projeções de fluxos de caixa dentro do notebook.
+
+[3] Documentação de Suporte:
+    - `reports/methodology.md`: Detalhamento técnico-matemático.
+    - `docs/business_explanation.md`: Visão estratégica do modelo.
+
+================================================================================
+                          RESOLUÇÃO de PROBLEMAS
+================================================================================
+
+- Erro de módulo faltando: Rode novamente o `python setup_environment.py`.
+- Notebook lento: O motor de simulação requer processamento intenso, é esperado.
+- Dataset não encontrado: O sistema utiliza dados sintéticos de alta fidelidade como fallback.
+
+Mais informações? Consulte o `GUIA_EXECUCAO.md` na raiz do projeto.
+================================================================================
