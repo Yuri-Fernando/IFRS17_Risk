@@ -4,7 +4,7 @@ Motor de cálculo de Ajuste ao Risco (Risk Adjustment) conforme norma IFRS 17 - 
 
 ---
 
-## 🚀 COMECE AQUI (3 Passos)
+##  COMECE AQUI (3 Passos)
 
 ### Passo 1: Instale Dependências (5-10 min, primeira vez apenas)
 ```bash
