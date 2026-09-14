@@ -1,0 +1,53 @@
+# Parâmetros de execução — Credit Risk ECL Engine
+# Alterar aqui não requer alteração de código (Artigo VI — evitar hardcode).
+
+data:
+  source: csv                       # csv | synthetic
+  file: data/raw/german_credit.csv
+  test_size: 0.25
+  random_state: 42
+
+pd_model:
+  logistic_regression:
+    C: 1.0
+    max_iter: 2000
+    class_weight: balanced
+  gradient_boosting:
+    n_estimators: 200
+    max_depth: 3
+    learning_rate: 0.05
+    subsample: 0.8
+
+staging:
+  sicr_threshold_ratio: 2.0         # PD atual >= 2x PD originação => Stage 2
+  sicr_absolute_threshold: 0.20     # piso absoluto de PD para Stage 2
+
+lgd:
+  downturn_addon_base: 0.0          # cenário base sem add-on
+
+ead:
+  elapsed_fraction: 0.3             # fração do prazo já decorrida na data-base
+  ccf: 1.0
+
+simulation:
+  n_simulations: 10000
+  inter_segment_correlation: 0.25   # correlação entre segmentos de portfólio (cópula gaussiana)
+  asset_correlation: 0.15           # correlação de ativos (modelo de Vasicek/Basileia)
+  confidence_levels: [0.95, 0.999]
+  seed: 123
+
+stress_test:
+  scenarios:
+    moderado:
+      pd_multiplier: 1.30
+      lgd_downturn_addon: 0.05
+    severo:
+      pd_multiplier: 1.80
+      lgd_downturn_addon: 0.12
+    extremo:
+      pd_multiplier: 2.50
+      lgd_downturn_addon: 0.20
+
+validation:
+  psi_bins: 10
+  calibration_bins: 10

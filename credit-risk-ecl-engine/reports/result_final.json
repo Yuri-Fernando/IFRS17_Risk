@@ -1,0 +1,499 @@
+{
+  "status": "SUCCESS",
+  "model_version": {
+    "model_name": "logistic_regression",
+    "version_hash": "f70a4945198b",
+    "generated_at": "2026-09-14T21:49:04.735015+00:00",
+    "parameters": {
+      "n_simulations": 10000,
+      "inter_segment_correlation": 0.25,
+      "asset_correlation": 0.15,
+      "data_source": "csv"
+    },
+    "gini": 0.6170666666666669,
+    "ks": 0.5314285714285714
+  },
+  "pd_models": {
+    "logistic_regression": {
+      "gini": 0.6170666666666669,
+      "ks": 0.5314285714285714,
+      "auc": 0.8085333333333334
+    },
+    "gradient_boosting": {
+      "gini": 0.5945142857142858,
+      "ks": 0.48571428571428577,
+      "auc": 0.7972571428571429
+    },
+    "champion": "logistic_regression"
+  },
+  "portfolio": {
+    "n_contracts": 1000,
+    "total_exposure": 2289880.5999999996,
+    "total_ecl": 874913.6693976223,
+    "coverage_ratio": 0.3820782923780491,
+    "n_stage1": 245,
+    "n_stage2": 455,
+    "n_stage3": 300
+  },
+  "ecl_by_stage": [
+    {
+      "stage": 1,
+      "n_contracts": 245,
+      "total_exposure": 425092.5,
+      "avg_pd": 0.10596548095781695,
+      "avg_lgd": 0.4531848874787054,
+      "total_ecl": 21403.985100359583,
+      "coverage_ratio": 0.05035135905799228
+    },
+    {
+      "stage": 2,
+      "n_contracts": 455,
+      "total_exposure": 1037781.4999999999,
+      "avg_pd": 0.6165419073592544,
+      "avg_lgd": 0.4997290200793838,
+      "total_ecl": 393953.9119292152,
+      "coverage_ratio": 0.37961161567171436
+    },
+    {
+      "stage": 3,
+      "n_contracts": 300,
+      "total_exposure": 827006.6,
+      "avg_pd": 1.0,
+      "avg_lgd": 0.5251491620690287,
+      "total_ecl": 459555.7723680476,
+      "coverage_ratio": 0.5556857374149706
+    }
+  ],
+  "ecl_by_segment": [
+    {
+      "segment": "bens_consumo",
+      "n_contracts": 485,
+      "total_exposure": 957709.2,
+      "total_ecl": 342965.17275889195,
+      "coverage_ratio": 0.3581099281064565
+    },
+    {
+      "segment": "pessoal",
+      "n_contracts": 169,
+      "total_exposure": 435657.6,
+      "total_ecl": 198067.68905255778,
+      "coverage_ratio": 0.45464072944568806
+    },
+    {
+      "segment": "pj_capital_giro",
+      "n_contracts": 9,
+      "total_exposure": 7597.099999999999,
+      "total_ecl": 1238.7119147715548,
+      "coverage_ratio": 0.16305062652479957
+    },
+    {
+      "segment": "veiculos",
+      "n_contracts": 337,
+      "total_exposure": 888916.7,
+      "total_ecl": 332642.09567140107,
+      "coverage_ratio": 0.3742106495146295
+    }
+  ],
+  "monte_carlo": {
+    "n_simulations": 10000,
+    "expected_loss": 874570.3365331305,
+    "var": {
+      "var_95": 956175.2223613195,
+      "var_99.9": 1026556.1952840994
+    },
+    "cvar": {
+      "cvar_95": 976174.427778162,
+      "cvar_99.9": 1037848.1527775226
+    },
+    "diversification_benefit": 295.19123769935686,
+    "correlation_matrix": {
+      "bens_consumo": {
+        "bens_consumo": 1.0,
+        "pessoal": 0.25,
+        "pj_capital_giro": 0.25,
+        "veiculos": 0.25
+      },
+      "pessoal": {
+        "bens_consumo": 0.25,
+        "pessoal": 1.0,
+        "pj_capital_giro": 0.25,
+        "veiculos": 0.25
+      },
+      "pj_capital_giro": {
+        "bens_consumo": 0.25,
+        "pessoal": 0.25,
+        "pj_capital_giro": 1.0,
+        "veiculos": 0.25
+      },
+      "veiculos": {
+        "bens_consumo": 0.25,
+        "pessoal": 0.25,
+        "pj_capital_giro": 0.25,
+        "veiculos": 1.0
+      }
+    }
+  },
+  "validation": {
+    "gini": 0.6170666666666669,
+    "ks": 0.5314285714285714,
+    "psi": 0.025889636236780256,
+    "psi_rating": "estável",
+    "calibration_table": [
+      {
+        "decile": 0,
+        "n": 25,
+        "pd_media_prevista": 0.062470087208344516,
+        "taxa_default_observada": 0.0,
+        "desvio_absoluto": 0.062470087208344516
+      },
+      {
+        "decile": 1,
+        "n": 25,
+        "pd_media_prevista": 0.13364630556298687,
+        "taxa_default_observada": 0.16,
+        "desvio_absoluto": 0.02635369443701313
+      },
+      {
+        "decile": 2,
+        "n": 25,
+        "pd_media_prevista": 0.19230288399017045,
+        "taxa_default_observada": 0.08,
+        "desvio_absoluto": 0.11230288399017045
+      },
+      {
+        "decile": 3,
+        "n": 25,
+        "pd_media_prevista": 0.28130309440795703,
+        "taxa_default_observada": 0.08,
+        "desvio_absoluto": 0.20130309440795702
+      },
+      {
+        "decile": 4,
+        "n": 25,
+        "pd_media_prevista": 0.37046559135513774,
+        "taxa_default_observada": 0.12,
+        "desvio_absoluto": 0.25046559135513774
+      },
+      {
+        "decile": 5,
+        "n": 25,
+        "pd_media_prevista": 0.4805254606581547,
+        "taxa_default_observada": 0.36,
+        "desvio_absoluto": 0.12052546065815473
+      },
+      {
+        "decile": 6,
+        "n": 25,
+        "pd_media_prevista": 0.5927220980136587,
+        "taxa_default_observada": 0.36,
+        "desvio_absoluto": 0.23272209801365873
+      },
+      {
+        "decile": 7,
+        "n": 25,
+        "pd_media_prevista": 0.6912005397052411,
+        "taxa_default_observada": 0.56,
+        "desvio_absoluto": 0.13120053970524104
+      },
+      {
+        "decile": 8,
+        "n": 25,
+        "pd_media_prevista": 0.7731610234973002,
+        "taxa_default_observada": 0.6,
+        "desvio_absoluto": 0.17316102349730023
+      },
+      {
+        "decile": 9,
+        "n": 25,
+        "pd_media_prevista": 0.8909992888411559,
+        "taxa_default_observada": 0.68,
+        "desvio_absoluto": 0.21099928884115582
+      }
+    ],
+    "backtesting": [
+      {
+        "n_observations": 245,
+        "n_defaults": 0,
+        "observed_default_rate": 1e-06,
+        "predicted_pd": 0.10596548095781695,
+        "lr_statistic": 54.884847398272356,
+        "p_value": 1.2778667013435552e-13,
+        "critical_value": 3.841458820694124,
+        "reject_h0": true,
+        "conclusion": "Modelo REJEITADO no backtesting (PD prevista diverge da taxa observada)",
+        "stage": 1
+      },
+      {
+        "n_observations": 455,
+        "n_defaults": 0,
+        "observed_default_rate": 1e-06,
+        "predicted_pd": 0.6165419073592544,
+        "lr_statistic": 872.2567855637533,
+        "p_value": 0.0,
+        "critical_value": 3.841458820694124,
+        "reject_h0": true,
+        "conclusion": "Modelo REJEITADO no backtesting (PD prevista diverge da taxa observada)",
+        "stage": 2
+      },
+      {
+        "n_observations": 300,
+        "n_defaults": 300,
+        "observed_default_rate": 0.999999,
+        "predicted_pd": 1.0,
+        "lr_statistic": -0.0,
+        "p_value": 1.0,
+        "critical_value": 3.841458820694124,
+        "reject_h0": false,
+        "conclusion": "Modelo ACEITO no backtesting (PD prevista compatível com a taxa observada)",
+        "stage": 3
+      }
+    ]
+  },
+  "stress_test": [
+    {
+      "total_exposure": 2289880.5999999996,
+      "total_ecl": 874913.6693976223,
+      "coverage_ratio": 0.3820782923780491,
+      "avg_pd": 0.6064881106831259,
+      "avg_lgd": 0.4959517501891111,
+      "scenario": "base",
+      "label": "Cenário Base",
+      "ecl_delta_vs_base": 0.0,
+      "ecl_delta_pct": 0.0
+    },
+    {
+      "total_exposure": 2289880.5999999996,
+      "total_ecl": 1016529.6286564847,
+      "coverage_ratio": 0.44392254716533464,
+      "avg_pd": 0.6728435753424279,
+      "avg_lgd": 0.5445070341427798,
+      "scenario": "moderado",
+      "label": "Estresse Moderado (+30% PD, +5pp LGD)",
+      "ecl_delta_vs_base": 141615.9592588623,
+      "ecl_delta_pct": 0.1618627805373813
+    },
+    {
+      "total_exposure": 2289880.5999999996,
+      "total_ecl": 1225578.1530196732,
+      "coverage_ratio": 0.5352148723473501,
+      "avg_pd": 0.7419690072049713,
+      "avg_lgd": 0.6135583882315425,
+      "scenario": "severo",
+      "label": "Estresse Severo (+80% PD, +12pp LGD)",
+      "ecl_delta_vs_base": 350664.48362205084,
+      "ecl_delta_pct": 0.4007989540996464
+    },
+    {
+      "total_exposure": 2289880.5999999996,
+      "total_ecl": 1409522.2575983284,
+      "coverage_ratio": 0.6155439971841015,
+      "avg_pd": 0.7968015344932132,
+      "avg_lgd": 0.6880594594456625,
+      "scenario": "extremo",
+      "label": "Estresse Extremo (+150% PD, +20pp LGD)",
+      "ecl_delta_vs_base": 534608.588200706,
+      "ecl_delta_pct": 0.6110415311819094
+    }
+  ],
+  "audit_log": [
+    {
+      "timestamp": "2026-09-14T21:49:00.585109+00:00",
+      "step": "load_data",
+      "status": "OK",
+      "details": {
+        "source": "csv",
+        "n_records": 1000
+      }
+    },
+    {
+      "timestamp": "2026-09-14T21:49:00.607788+00:00",
+      "step": "preprocess",
+      "status": "OK",
+      "details": {
+        "n_features": 40
+      }
+    },
+    {
+      "timestamp": "2026-09-14T21:49:01.321945+00:00",
+      "step": "train_pd_models",
+      "status": "OK",
+      "details": {
+        "logistic": {
+          "gini": 0.6170666666666669,
+          "ks": 0.5314285714285714,
+          "auc": 0.8085333333333334
+        },
+        "gbm": {
+          "gini": 0.5945142857142858,
+          "ks": 0.48571428571428577,
+          "auc": 0.7972571428571429
+        },
+        "champion": "logistic_regression"
+      }
+    },
+    {
+      "timestamp": "2026-09-14T21:49:01.330027+00:00",
+      "step": "staging",
+      "status": "OK",
+      "details": {
+        "n_stage1": 245,
+        "n_stage2": 455,
+        "n_stage3": 300
+      }
+    },
+    {
+      "timestamp": "2026-09-14T21:49:01.331193+00:00",
+      "step": "lgd_ead",
+      "status": "OK",
+      "details": {
+        "avg_lgd": 0.4959517501891111,
+        "total_ead": 2289880.5999999996
+      }
+    },
+    {
+      "timestamp": "2026-09-14T21:49:01.352417+00:00",
+      "step": "ecl_calculation",
+      "status": "OK",
+      "details": {
+        "n_contracts": 1000,
+        "total_exposure": 2289880.5999999996,
+        "total_ecl": 874913.6693976223,
+        "coverage_ratio": 0.3820782923780491,
+        "n_stage1": 245,
+        "n_stage2": 455,
+        "n_stage3": 300
+      }
+    },
+    {
+      "timestamp": "2026-09-14T21:49:04.707248+00:00",
+      "step": "monte_carlo_copula",
+      "status": "OK",
+      "details": {
+        "n_simulations": 10000,
+        "inter_segment_correlation": 0.25,
+        "asset_correlation": 0.15,
+        "expected_loss": 874570.3365331305,
+        "var": {
+          "var_95": 956175.2223613195,
+          "var_99.9": 1026556.1952840994
+        },
+        "cvar": {
+          "cvar_95": 976174.427778162,
+          "cvar_99.9": 1037848.1527775226
+        },
+        "diversification_benefit": 295.19123769935686
+      }
+    },
+    {
+      "timestamp": "2026-09-14T21:49:04.718146+00:00",
+      "step": "validation",
+      "status": "OK",
+      "details": {
+        "champion_gini": 0.6170666666666669,
+        "champion_ks": 0.5314285714285714,
+        "psi": 0.025889636236780256,
+        "psi_rating": "estável",
+        "backtest": [
+          {
+            "n_observations": 245,
+            "n_defaults": 0,
+            "observed_default_rate": 1e-06,
+            "predicted_pd": 0.10596548095781695,
+            "lr_statistic": 54.884847398272356,
+            "p_value": 1.2778667013435552e-13,
+            "critical_value": 3.841458820694124,
+            "reject_h0": true,
+            "conclusion": "Modelo REJEITADO no backtesting (PD prevista diverge da taxa observada)",
+            "stage": 1
+          },
+          {
+            "n_observations": 455,
+            "n_defaults": 0,
+            "observed_default_rate": 1e-06,
+            "predicted_pd": 0.6165419073592544,
+            "lr_statistic": 872.2567855637533,
+            "p_value": 0.0,
+            "critical_value": 3.841458820694124,
+            "reject_h0": true,
+            "conclusion": "Modelo REJEITADO no backtesting (PD prevista diverge da taxa observada)",
+            "stage": 2
+          },
+          {
+            "n_observations": 300,
+            "n_defaults": 300,
+            "observed_default_rate": 0.999999,
+            "predicted_pd": 1.0,
+            "lr_statistic": -0.0,
+            "p_value": 1.0,
+            "critical_value": 3.841458820694124,
+            "reject_h0": false,
+            "conclusion": "Modelo ACEITO no backtesting (PD prevista compatível com a taxa observada)",
+            "stage": 3
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-09-14T21:49:04.735015+00:00",
+      "step": "stress_test",
+      "status": "OK",
+      "details": {
+        "scenarios": [
+          {
+            "total_exposure": 2289880.5999999996,
+            "total_ecl": 874913.6693976223,
+            "coverage_ratio": 0.3820782923780491,
+            "avg_pd": 0.6064881106831259,
+            "avg_lgd": 0.4959517501891111,
+            "scenario": "base",
+            "label": "Cenário Base",
+            "ecl_delta_vs_base": 0.0,
+            "ecl_delta_pct": 0.0
+          },
+          {
+            "total_exposure": 2289880.5999999996,
+            "total_ecl": 1016529.6286564847,
+            "coverage_ratio": 0.44392254716533464,
+            "avg_pd": 0.6728435753424279,
+            "avg_lgd": 0.5445070341427798,
+            "scenario": "moderado",
+            "label": "Estresse Moderado (+30% PD, +5pp LGD)",
+            "ecl_delta_vs_base": 141615.9592588623,
+            "ecl_delta_pct": 0.1618627805373813
+          },
+          {
+            "total_exposure": 2289880.5999999996,
+            "total_ecl": 1225578.1530196732,
+            "coverage_ratio": 0.5352148723473501,
+            "avg_pd": 0.7419690072049713,
+            "avg_lgd": 0.6135583882315425,
+            "scenario": "severo",
+            "label": "Estresse Severo (+80% PD, +12pp LGD)",
+            "ecl_delta_vs_base": 350664.48362205084,
+            "ecl_delta_pct": 0.4007989540996464
+          },
+          {
+            "total_exposure": 2289880.5999999996,
+            "total_ecl": 1409522.2575983284,
+            "coverage_ratio": 0.6155439971841015,
+            "avg_pd": 0.7968015344932132,
+            "avg_lgd": 0.6880594594456625,
+            "scenario": "extremo",
+            "label": "Estresse Extremo (+150% PD, +20pp LGD)",
+            "ecl_delta_vs_base": 534608.588200706,
+            "ecl_delta_pct": 0.6110415311819094
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-09-14T21:49:04.735015+00:00",
+      "step": "pipeline_complete",
+      "status": "OK",
+      "details": {
+        "elapsed_seconds": 4.2
+      }
+    }
+  ],
+  "elapsed_seconds": 4.2
+}

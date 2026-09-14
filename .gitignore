@@ -54,3 +54,7 @@ ifrs17-risk-adjustment/data/processed/*
 # We specifically WANT to include the raw dataset for this portfolio
 # ifrs17-risk-adjustment/data/raw/*
 # !ifrs17-risk-adjustment/data/raw/.gitkeep
+
+# Notas pessoais / conteúdo de terceiros — não fazem parte do projeto técnico
+para add.md
+post_linkedin*.md

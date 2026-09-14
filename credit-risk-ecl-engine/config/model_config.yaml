@@ -1,0 +1,24 @@
+# Gates de qualidade e hipóteses técnicas do modelo — Credit Risk ECL Engine
+
+quality_gates:
+  min_gini: 0.40                    # abaixo disso, modelo de PD é considerado fraco para produção
+  min_ks: 0.30
+  max_psi: 0.25                     # acima disso, recalibração é recomendada
+  max_calibration_deviation: 0.10   # desvio máximo aceitável entre PD prevista e observada por decil
+
+governance:
+  champion_selection_metric: gini
+  challenger_models: [logistic_regression, gradient_boosting]
+  requires_human_sign_off: true     # decisão final de adoção do modelo é humana, não automática
+
+regulatory_alignment:
+  - IFRS 9 (IASB) — Financial Instruments, Section 5.5 Impairment
+  - Resolução CMN n. 4.966/2021 — Instrumentos financeiros (substitui Res. 2.682)
+  - Resolução BCB n. 352/2023 — Metodologia de perda esperada
+  - Basileia III / IRB — correlação de ativos (Vasicek) usada na simulação
+
+known_limitations:
+  - "Dataset German Credit não contém dados reais de recuperação pós-default (LGD é estimada por proxy de colateral, não observada)."
+  - "PD de originação é aproximada por simulação de drift, na ausência de histórico de safras (vintage)."
+  - "Correlação entre segmentos é parametrizada (equicorrelação), não estimada de série histórica real de inadimplência."
+  - "EAD assume amortização linear e fração de prazo decorrida fixa, por ausência de data de originação no dataset."
