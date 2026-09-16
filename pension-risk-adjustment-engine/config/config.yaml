@@ -1,0 +1,55 @@
+# Configuração central do motor de Ajuste ao Risco (AR) — Previdência multi-produto
+# Todos os parâmetros que alimentam premissas devem estar aqui, nunca hardcoded no código
+# (rastreabilidade de premissa é requisito de governança do projeto — ver reports/assumptions.md)
+
+seed: 42
+
+portfolio:
+  n_policyholders: 60000
+  start_date: "2018-01-01"
+  end_date: "2025-12-01"
+  age_min: 18
+  age_max: 85
+  products:
+    - peculio
+    - pensao_por_morte
+    - renda_invalidez
+    - pensao_menor
+    - previdencia_longevidade
+    - previdencia_resgate
+
+mortality:
+  base_table: "BR-EMS-approx-2021"   # aproximação paramétrica, não a tábua oficial exata
+  annuitant_table: "PRSSVBR-approx"  # tábua de sobrevivência de renda, aproximação paramétrica
+  discount_rate_annual: 0.06
+
+experience_engine:
+  cell_dimensions: ["age_band", "sex", "product", "year_month"]
+  age_band_width: 5
+  min_exposure_credibility: 1000   # expostos mínimos por célula para credibilidade plena (Z=1)
+  min_events_credibility: 30       # eventos mínimos por célula para credibilidade plena (Z=1)
+
+distribution_fit:
+  candidates: ["gamma", "lognorm", "norm"]
+  frequency_candidates: ["poisson", "nbinom"]
+  severity_candidates: ["lognorm", "gamma"]
+
+monte_carlo:
+  n_scenarios: 10000
+  convergence_check_sizes: [1000, 5000, 10000, 50000]
+  convergence_tolerance: 0.01
+  window_months: 60
+  zero_claim_probability_assumption: "empirical"  # estimado da base, documentado como premissa
+
+risk_adjustment:
+  target_percentiles: [75, 80, 90]
+  default_percentile: 80
+  cte_validation: true
+  diversification_benefit: 0.15   # redução sobre soma simples das caixinhas (premissa, ver assumptions.md)
+  adverse_correlation:
+    longevity_conversion: 0.55
+    longevity_lapse: -0.45
+
+solvency_ii_benchmark:
+  mortality_shock: 0.15
+  confidence_level: 0.995

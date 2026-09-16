@@ -1,15 +1,15 @@
 # IFRS17_Risk — Modelagem de Risco Atuarial e de Crédito
 
-### Dois motores quantitativos de risco/provisão financeira, evoluindo do mesmo núcleo de engenharia para domínios regulatórios diferentes
+### Três motores quantitativos de risco/provisão financeira, evoluindo do mesmo núcleo de engenharia para domínios regulatórios diferentes
 
 ## Status
 
-🟢 **v2 em portfólio — Credit Risk ECL Engine** · 🟢 **v1 concluído — IFRS 17 Risk Adjustment Engine**
+🟢 **v3 em portfólio — Pension Risk Adjustment Engine** · 🟢 **v2 concluído — Credit Risk ECL Engine** · 🟢 **v1 concluído — IFRS 17 Risk Adjustment Engine**
 
 Repositório de portfólio com pipelines quantitativos modulares em Python
 (dados → modelagem → simulação → validação → governança), aplicados a
-dois domínios regulatórios: risco de crédito bancário (IFRS 9 /
-Resolução CMN 4.966) e risco atuarial de seguros (IFRS 17).
+dois domínios regulatórios: risco atuarial de seguros/previdência (IFRS 17)
+e risco de crédito bancário (IFRS 9 / Resolução CMN 4.966).
 
 > **Escopo:** aplicações de pesquisa e portfólio para experimentação
 > quantitativa. Não substituem modelos de produção, processos de
@@ -19,7 +19,23 @@ Resolução CMN 4.966) e risco atuarial de seguros (IFRS 17).
 
 # Versões
 
-## 📊 v2 — [credit-risk-ecl-engine](credit-risk-ecl-engine/) *(atual)*
+## 🏦 v3 — [pension-risk-adjustment-engine](pension-risk-adjustment-engine/) *(atual)*
+
+Motor de **Ajuste ao Risco (AR) multi-produto** para Previdência
+Complementar e Benefícios de Risco (Peculio, Pensão por Morte, Renda por
+Invalidez, Pensão ao Menor, Longevidade), sob **IFRS 17**. Reconstrói e
+**completa** a metodologia real desenvolvida em ~4 meses de trabalho
+como bolsista/estagiário atuarial em uma instituição financeira —
+credibility testing (Bühlmann), simulação de Monte Carlo com CTE e
+teste de convergência, benefício de diversificação entre riscos, e
+cenário de correlação adversa (longevidade × conversão × resgate) via
+cópula Gaussiana. Dataset 100% sintético e internamente auditável
+(A/E ≈ 100% contra a própria tábua geradora) — nenhum dado real de
+nenhuma carteira é usado. Resultados gerados por execução real.
+
+➡️ [README completo](pension-risk-adjustment-engine/README.md) · [Notebook executado](pension-risk-adjustment-engine/notebooks/pension_risk_adjustment_e2e.ipynb) · [Metodologia mestre completa](itau/METODOLOGIA_MESTRE.md)
+
+## 📊 v2 — [credit-risk-ecl-engine](credit-risk-ecl-engine/)
 
 Motor de **Perda Esperada de Crédito (ECL)** para carteiras bancárias,
 conforme **IFRS 9** e **Resolução CMN n. 4.966/2021**: modelagem de PD,
@@ -41,61 +57,72 @@ simulação de Monte Carlo, cálculo de VaR/CTE e validação atuarial.
 
 ---
 
-# A evolução v1 → v2
+# A evolução v1 → v2 → v3
 
-O `credit-risk-ecl-engine` é um **pivô consciente** do
-`ifrs17-risk-adjustment`, não um projeto do zero: a mesma arquitetura de
-pipeline (dados → modelagem → simulação → validação → governança) foi
-migrada de risco atuarial de seguros para **risco de crédito bancário**
-— domínio de PD/LGD/EAD e IFRS 9/CMN 4.966.
+O `credit-risk-ecl-engine` (v2) é um **pivô consciente** do
+`ifrs17-risk-adjustment` (v1), não um projeto do zero: a mesma
+arquitetura de pipeline (dados → modelagem → simulação → validação →
+governança) foi migrada de risco atuarial de seguros para **risco de
+crédito bancário** — domínio de PD/LGD/EAD e IFRS 9/CMN 4.966. A v2
+também endereça, de forma deliberada, uma lacuna metodológica comum em
+modelos desse tipo: PoCs que somam perdas assumindo **independência
+entre inadimplências** subestimam o risco de cauda de uma carteira
+real — resolvida incorporando **correlação entre segmentos via
+cópulas** no motor de simulação.
 
-A v2 também endereça, de forma deliberada, uma lacuna metodológica comum
-em modelos de risco desse tipo: PoCs que somam perdas contrato a
-contrato assumindo **independência entre inadimplências** subestimam o
-risco de cauda de uma carteira real. A v2 resolve isso incorporando
-**correlação entre segmentos de risco via cópulas** no motor de
-simulação — e documenta, com transparência, cada premissa e limitação
-que separa um PoC de um modelo pronto para produção.
+O `pension-risk-adjustment-engine` (v3) fecha um ciclo diferente: durante
+o trabalho real de ~4 meses em uma instituição financeira que deu origem
+a este projeto, o próprio `ifrs17-risk-adjustment` (v1) foi usado como
+referência técnica para justificar escolhas metodológicas no banco
+(comparação VaR vs. CTE vs. Custo de Capital, teste de convergência,
+fixação de semente). A v3 devolve esse aprendizado ao portfólio,
+implementando a metodologia real multi-produto — com as melhorias que
+não puderam ser concluídas no projeto original (credibility testing,
+diversificação entre riscos, correlação adversa via cópula) — e
+reaproveitando a técnica de cópulas já validada na v2.
 
-Ambos os projetos permanecem no repositório para evidenciar essa
-evolução do raciocínio técnico entre os dois domínios.
+Os três projetos permanecem no repositório para evidenciar essa
+evolução do raciocínio técnico entre os domínios.
 
 ---
 
 # O que este repositório demonstra
 
-* Modelagem estatística e atuarial/creditícia (PD, LGD, EAD, frequência, severidade);
+* Modelagem estatística e atuarial/creditícia (PD, LGD, EAD, frequência, severidade, credibility testing);
 * Simulação de Monte Carlo e modelagem de dependência via cópulas;
 * Métricas de risco: VaR, CVaR/CTE, ECL, Risk Adjustment;
-* Validação estatística: Gini, KS, PSI, testes de aderência, backtesting;
+* Validação estatística: Gini, KS, PSI, testes de aderência, backtesting, consistência interna de dataset sintético;
 * Stress testing e análise de sensibilidade;
-* Governança de modelos: audit trail, versionamento, quality gates;
-* Pipelines modulares em Python, testados (pytest) e documentados;
-* Alinhamento explícito a normas regulatórias (IFRS 9, IFRS 17, CMN 4.966, SUSEP, BACEN).
+* Governança de modelos: audit trail, registro formal de premissas, versionamento, quality gates;
+* Pipelines modulares em Python, testados (pytest) e documentados, com notebook, CLI e dashboard interativo;
+* Alinhamento explícito a normas regulatórias (IFRS 9, IFRS 17, CMN 4.966, SUSEP, BACEN);
+* Reconstrução documentada e honesta de metodologia real de projeto profissional, com dados sintéticos e transparência total sobre limitações.
 
 ---
 
 # Stack
 
 Python 3.10+ · NumPy · Pandas · SciPy · scikit-learn · statsmodels ·
-Matplotlib · Jupyter
+Matplotlib · Streamlit · Jupyter
 
 # Estrutura do Repositório
 
 ```text
 IFRS17_Risk/
 │
-├── credit-risk-ecl-engine/     v2 — risco de crédito bancário (IFRS 9 / CMN 4.966)
-├── ifrs17-risk-adjustment/     v1 — risco atuarial de seguros (IFRS 17)
-├── main.ipynb                  notebook exploratório original da v1
-└── resumo.md                   guia de estudo da v1
+├── pension-risk-adjustment-engine/   v3 — AR multi-produto de previdência (IFRS 17)
+├── credit-risk-ecl-engine/           v2 — risco de crédito bancário (IFRS 9 / CMN 4.966)
+├── ifrs17-risk-adjustment/           v1 — risco atuarial de seguros (IFRS 17)
+├── itau/METODOLOGIA_MESTRE.md        metodologia consolidada do projeto real que originou a v3 (sem dados confidenciais)
+├── main.ipynb                        notebook exploratório original da v1
+└── resumo.md                         guia de estudo da v1
 ```
 
 ---
 
 # Versão
 
-**v2.0.0 — Setembro de 2026** (credit-risk-ecl-engine) · **v1.0.0 — Março de 2026** (ifrs17-risk-adjustment)
+**v3.0.0 — Setembro de 2026** (pension-risk-adjustment-engine) · **v2.0.0 — Setembro de 2026** (credit-risk-ecl-engine) · **v1.0.0 — Março de 2026** (ifrs17-risk-adjustment)
 
 # Licença
 

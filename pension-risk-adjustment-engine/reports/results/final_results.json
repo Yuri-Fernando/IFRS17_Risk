@@ -1,0 +1,183 @@
+{
+  "config": {
+    "seed": 42,
+    "portfolio": {
+      "n_policyholders": 60000,
+      "start_date": "2018-01-01",
+      "end_date": "2025-12-01",
+      "age_min": 18,
+      "age_max": 85,
+      "products": [
+        "peculio",
+        "pensao_por_morte",
+        "renda_invalidez",
+        "pensao_menor",
+        "previdencia_longevidade",
+        "previdencia_resgate"
+      ]
+    },
+    "mortality": {
+      "base_table": "BR-EMS-approx-2021",
+      "annuitant_table": "PRSSVBR-approx",
+      "discount_rate_annual": 0.06
+    },
+    "experience_engine": {
+      "cell_dimensions": [
+        "age_band",
+        "sex",
+        "product",
+        "year_month"
+      ],
+      "age_band_width": 5,
+      "min_exposure_credibility": 1000,
+      "min_events_credibility": 30
+    },
+    "distribution_fit": {
+      "candidates": [
+        "gamma",
+        "lognorm",
+        "norm"
+      ],
+      "frequency_candidates": [
+        "poisson",
+        "nbinom"
+      ],
+      "severity_candidates": [
+        "lognorm",
+        "gamma"
+      ]
+    },
+    "monte_carlo": {
+      "n_scenarios": 10000,
+      "convergence_check_sizes": [
+        1000,
+        5000,
+        10000,
+        50000
+      ],
+      "convergence_tolerance": 0.01,
+      "window_months": 60,
+      "zero_claim_probability_assumption": "empirical"
+    },
+    "risk_adjustment": {
+      "target_percentiles": [
+        75,
+        80,
+        90
+      ],
+      "default_percentile": 80,
+      "cte_validation": true,
+      "diversification_benefit": 0.15,
+      "adverse_correlation": {
+        "longevity_conversion": 0.55,
+        "longevity_lapse": -0.45
+      }
+    },
+    "solvency_ii_benchmark": {
+      "mortality_shock": 0.15,
+      "confidence_level": 0.995
+    }
+  },
+  "dataset_summary": {
+    "n_policyholders": 60000,
+    "n_exposure_rows": 2793864,
+    "n_claims": 8981
+  },
+  "ae_ratio_peculio": 0.9907053858811152,
+  "chi_square_test": {
+    "chi2_statistic": 0.24965458824587386,
+    "p_value": 0.9999999999159878,
+    "significant": false,
+    "interpretation": "Sem evidência de diferença significativa entre observado e esperado."
+  },
+  "distribution_selected": "lognorm",
+  "monte_carlo": {
+    "p0": 0.0,
+    "median_simulated": 0.24322422378183095,
+    "percentiles": {
+      "75": 0.24854266361339936,
+      "80": 0.24982794907253897,
+      "90": 0.25343659624471415
+    },
+    "stress_factors": {
+      "75": 1.0218664068441594,
+      "80": 1.0271507713665537,
+      "90": 1.0419874809510896
+    },
+    "convergence_records": [
+      {
+        "n_scenarios": 1000,
+        "stress_factor": 1.0283549596830392
+      },
+      {
+        "n_scenarios": 5000,
+        "stress_factor": 1.0265916129373884
+      },
+      {
+        "n_scenarios": 10000,
+        "stress_factor": 1.0271507713665537
+      },
+      {
+        "n_scenarios": 50000,
+        "stress_factor": 1.0271560242167983
+      }
+    ],
+    "converged": true
+  },
+  "solvency_ii_benchmark": {
+    "our_stress_pct": 0.02715077136655375,
+    "our_confidence_level": 0.8,
+    "solvency_ii_shock_pct": 0.15,
+    "solvency_ii_confidence_level": 0.995,
+    "directionally_consistent": true,
+    "interpretation": "Consistente: percentil de confiança menor que o Solvency II (99,5%) produziu, como esperado, um stress proporcionalmente menor que o benchmark europeu."
+  },
+  "components": {
+    "peculio": {
+      "bel_base": 2826323926.454589,
+      "bel_stress": 2856038930.4036875,
+      "ar_monetary": 29715003.949098587,
+      "ar_pct_of_bel": 0.010513658279209994
+    },
+    "pensao_por_morte": {
+      "bel_base": 4213515841.0037317,
+      "bel_stress": 4257980447.4143915,
+      "ar_monetary": 44464606.41065979,
+      "ar_pct_of_bel": 0.010552851368909903
+    },
+    "renda_invalidez": {
+      "bel_base": 3804735429.0000467,
+      "bel_stress": 3838603302.0442133,
+      "ar_monetary": 33867873.044166565,
+      "ar_pct_of_bel": 0.008901505420330278
+    },
+    "pensao_menor": {
+      "bel_base": 395526369.11112773,
+      "bel_stress": 399703615.1765622,
+      "ar_monetary": 4177246.065434456,
+      "ar_pct_of_bel": 0.010561232806859484
+    },
+    "previdencia_longevidade": {
+      "bel_base": 8864300448.735773,
+      "bel_stress": 8940839185.477188,
+      "ar_monetary": 76538736.74141502,
+      "ar_pct_of_bel": 0.008634492612705946
+    }
+  },
+  "combined": {
+    "total_bel_base": 20104402014.305267,
+    "ar_sum_simple": 188763466.21077442,
+    "ar_diversified": 160448946.27915826,
+    "diversification_benefit_pct": 0.15,
+    "ar_diversified_pct_of_bel": 0.0079807868030589,
+    "csm_reduction": 160448946.27915826
+  },
+  "adverse_correlation_scenario": {
+    "longevity_shift_p50": 0.9978139416734317,
+    "longevity_shift_pXX": 1.0660226784692974,
+    "conversion_shift_p50": 0.9974439585338086,
+    "conversion_shift_pXX": 1.08382897475433,
+    "lapse_shift_p50": 1.0005338876420273,
+    "lapse_shift_pXX": 1.124588674477491
+  }
+}

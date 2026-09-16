@@ -25,6 +25,10 @@ MANIFEST
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# Pytest
+.pytest_cache/
+.deepeval/
 # We want to keep notebooks in this project
 # *.ipynb 
 
@@ -58,3 +62,11 @@ ifrs17-risk-adjustment/data/processed/*
 # Notas pessoais / conteúdo de terceiros — não fazem parte do projeto técnico
 para add.md
 post_linkedin*.md
+
+# itau/ contém material bruto e confidencial de um projeto real (transcrições
+# de reunião com nomes de colegas, números reais de carteira, PDFs/HTMLs
+# internos, planilhas). Nada disso vai para o repositório público — apenas o
+# documento mestre da metodologia, já higienizado (sem números confidenciais
+# nem nomes), é versionado.
+itau/*
+!itau/METODOLOGIA_MESTRE.md
