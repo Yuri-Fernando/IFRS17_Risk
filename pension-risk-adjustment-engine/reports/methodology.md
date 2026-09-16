@@ -1,8 +1,5 @@
 # Metodologia — pension-risk-adjustment-engine
 
-> Documento resumido. A metodologia completa, com a evolução histórica, decisões,
-> lições de processo e referências, está em [`../../itau/METODOLOGIA_MESTRE.md`](../../itau/METODOLOGIA_MESTRE.md).
-
 ## Pipeline
 
 ```

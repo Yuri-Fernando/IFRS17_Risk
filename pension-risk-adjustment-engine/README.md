@@ -11,11 +11,9 @@ desenvolvi durante ~4 meses de trabalho como bolsista/estagiário atuarial em pr
 complementar aberta de uma instituição financeira — cobrindo **Peculio, Pensão por Morte,
 Renda por Invalidez, Pensão ao Menor e Previdência (Longevidade)**.
 
-O projeto real terminou incompleto (fui desligado antes de fechar o cálculo com a carteira
-real). Este repositório reconstrói e **completa** a metodologia com dados 100% sintéticos,
-endereçando explicitamente os gaps que ficaram em aberto — ver a seção
-[Do projeto real a este projeto](#do-projeto-real-a-este-projeto) e a
-[metodologia mestre completa](../itau/METODOLOGIA_MESTRE.md).
+O projeto real terminou incompleto. Este repositório reconstrói e **completa** a metodologia
+com dados 100% sintéticos, endereçando explicitamente os gaps que ficaram em aberto — ver a
+seção [Do projeto real a este projeto](#do-projeto-real-a-este-projeto).
 
 Este é o **v3** do repositório de portfólio, evolução direta de:
 [`ifrs17-risk-adjustment`](../ifrs17-risk-adjustment/) (v1, motor genérico de AR) →
@@ -107,9 +105,7 @@ AR = BEL_stress − BEL_base  (por componente/"caixinha")
 AR total  →  impacto no CSM (CSM cai R$1 para cada R$1 de AR)
 ```
 
-Documentação completa da lógica, decisões, evolução histórica e referências:
-[`../itau/METODOLOGIA_MESTRE.md`](../itau/METODOLOGIA_MESTRE.md) ·
-resumo técnico deste projeto: [`reports/methodology.md`](reports/methodology.md).
+Resumo técnico deste projeto: [`reports/methodology.md`](reports/methodology.md).
 
 ---
 

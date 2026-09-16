@@ -33,7 +33,7 @@ cópula Gaussiana. Dataset 100% sintético e internamente auditável
 (A/E ≈ 100% contra a própria tábua geradora) — nenhum dado real de
 nenhuma carteira é usado. Resultados gerados por execução real.
 
-➡️ [README completo](pension-risk-adjustment-engine/README.md) · [Notebook executado](pension-risk-adjustment-engine/notebooks/pension_risk_adjustment_e2e.ipynb) · [Metodologia mestre completa](itau/METODOLOGIA_MESTRE.md)
+➡️ [README completo](pension-risk-adjustment-engine/README.md) · [Notebook executado](pension-risk-adjustment-engine/notebooks/pension_risk_adjustment_e2e.ipynb)
 
 ## 📊 v2 — [credit-risk-ecl-engine](credit-risk-ecl-engine/)
 
@@ -113,7 +113,6 @@ IFRS17_Risk/
 ├── pension-risk-adjustment-engine/   v3 — AR multi-produto de previdência (IFRS 17)
 ├── credit-risk-ecl-engine/           v2 — risco de crédito bancário (IFRS 9 / CMN 4.966)
 ├── ifrs17-risk-adjustment/           v1 — risco atuarial de seguros (IFRS 17)
-├── itau/METODOLOGIA_MESTRE.md        metodologia consolidada do projeto real que originou a v3 (sem dados confidenciais)
 ├── main.ipynb                        notebook exploratório original da v1
 └── resumo.md                         guia de estudo da v1
 ```
