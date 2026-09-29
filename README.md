@@ -45,7 +45,7 @@ validação (Gini, KS, PSI, backtesting de Kupiec); stress testing.
 Dataset real (UCI German Credit) baixado e usado de fato — resultados
 gerados por execução real, não simulados.
 
-**Extensão v2.1 — Lifetime PD & Forward-Looking (set/2026):** survival
+🆕 **Novo — extensão v2.1 Lifetime PD & Forward-Looking (set/2026):** survival
 analysis (Kaplan-Meier, Cox PH, Weibull AFT, risco competitivo) substituindo
 a extrapolação de hazard constante, vintage e matriz de migração
 (Corrente→30→60→Default com cura), PIT × TTC via satélite macro e cenários

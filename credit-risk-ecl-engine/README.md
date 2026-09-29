@@ -30,7 +30,7 @@ risco de crédito bancário.
 
 ---
 
-# Extensão v2.1 — Lifetime PD & Forward-Looking
+# 🆕 Extensão v2.1 — Lifetime PD & Forward-Looking (setembro/2026)
 
 A v2 extrapolava PD 12m para lifetime com hazard constante
 (`PD_lifetime = 1 − (1 − PD_12m)^(T/12)`). A v2.1 adiciona uma trilha
@@ -52,7 +52,9 @@ recessão sintética, workouts de recuperação). Os mecanismos são explícitos
 — os estimadores são verificáveis contra a verdade do gerador. Nenhum número
 abaixo descreve carteira real.
 
-## O que foi adicionado
+## O que há de novo na v2.1 (em relação à v2)
+
+Nada da v2 foi alterado (`run_pipeline.py`, German Credit, resultados em `reports/result_final.json`). Todos os módulos abaixo são novos:
 
 | Módulo | Conteúdo |
 |---|---|
