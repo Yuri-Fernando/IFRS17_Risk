@@ -45,7 +45,17 @@ validação (Gini, KS, PSI, backtesting de Kupiec); stress testing.
 Dataset real (UCI German Credit) baixado e usado de fato — resultados
 gerados por execução real, não simulados.
 
-➡️ [README completo](credit-risk-ecl-engine/README.md) · [Notebook executado](credit-risk-ecl-engine/notebooks/credit_risk_ecl_engine.ipynb)
+**Extensão v2.1 — Lifetime PD & Forward-Looking (set/2026):** survival
+analysis (Kaplan-Meier, Cox PH, Weibull AFT, risco competitivo) substituindo
+a extrapolação de hazard constante, vintage e matriz de migração
+(Corrente→30→60→Default com cura), PIT × TTC via satélite macro e cenários
+base/upside/downside com ECL ponderada, LGD de workout com downturn, CCF do
+rotativo, PD bayesiana por segmento, waterfall de drivers da ECL e
+*validation pack* automático + documentação de Model Risk Management — sobre
+um painel sintético mensal com verdade conhecida (o German Credit não tem
+originação nem histórico).
+
+➡️ [README completo](credit-risk-ecl-engine/README.md) · [Notebook executado](credit-risk-ecl-engine/notebooks/credit_risk_ecl_engine.ipynb) · [Validation pack](credit-risk-ecl-engine/reports/lifetime/validation_pack.md)
 
 ## 🏛️ v1 — [ifrs17-risk-adjustment](ifrs17-risk-adjustment/)
 
@@ -93,6 +103,7 @@ evolução do raciocínio técnico entre os domínios.
 * Métricas de risco: VaR, CVaR/CTE, ECL, Risk Adjustment;
 * Validação estatística: Gini, KS, PSI, testes de aderência, backtesting, consistência interna de dataset sintético;
 * Stress testing e análise de sensibilidade;
+* Survival analysis (Kaplan-Meier, Cox, Weibull), vintage analysis, matriz de migração e PIT/TTC com cenários macro ponderados (IFRS 9 forward-looking);
 * Governança de modelos: audit trail, registro formal de premissas, versionamento, quality gates;
 * Pipelines modulares em Python, testados (pytest) e documentados, com notebook, CLI e dashboard interativo;
 * Alinhamento explícito a normas regulatórias (IFRS 9, IFRS 17, CMN 4.966, SUSEP, BACEN);
@@ -121,7 +132,7 @@ IFRS17_Risk/
 
 # Versão
 
-**v3.0.0 — Setembro de 2026** (pension-risk-adjustment-engine) · **v2.0.0 — Setembro de 2026** (credit-risk-ecl-engine) · **v1.0.0 — Março de 2026** (ifrs17-risk-adjustment)
+**v3.0.0 — Setembro de 2026** (pension-risk-adjustment-engine) · **v2.1.0 — Setembro de 2026** (credit-risk-ecl-engine: lifetime PD & forward-looking) · **v2.0.0 — Setembro de 2026** (credit-risk-ecl-engine) · **v1.0.0 — Março de 2026** (ifrs17-risk-adjustment)
 
 # Licença
 

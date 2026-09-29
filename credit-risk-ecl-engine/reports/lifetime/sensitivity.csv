@@ -1,0 +1,8 @@
+parameter,value,ecl_weighted
+peso downside,0.2,2437053.5667620613
+peso downside,0.3,2508536.2627983834
+peso downside,0.4,2580018.958834706
+peso downside,0.5,2651501.654871028
+rho (correlação de ativos),0.08,2536106.5278402204
+rho (correlação de ativos),0.12,2508536.2627983834
+rho (correlação de ativos),0.2,2454412.2017136365

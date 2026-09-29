@@ -4,7 +4,7 @@
 
 ## Status
 
-🟢 **Concluído — Versão 2.0 (v2 do portfólio)**
+🟢 **Concluído — Versão 2.0 (v2 do portfólio)** · 🟢 **Extensão v2.1 — Lifetime PD & Forward-Looking (set/2026)**
 
 Projeto de **modelagem de crédito, estatística e simulação de risco**
 desenvolvido para calcular a **Perda Esperada de Crédito (ECL)** no
@@ -27,6 +27,96 @@ risco de crédito bancário.
 > quantitativa com conceitos de IFRS 9 / gestão de risco de crédito.
 > Não substitui modelos de crédito, processos de validação ou
 > requisitos regulatórios de uma implementação institucional.
+
+---
+
+# Extensão v2.1 — Lifetime PD & Forward-Looking
+
+A v2 extrapolava PD 12m para lifetime com hazard constante
+(`PD_lifetime = 1 − (1 − PD_12m)^(T/12)`). A v2.1 adiciona uma trilha
+metodológica baseada em **tempo até default**, **safras**, **migração de
+atraso** e **cenários macroeconômicos**, mantendo a fórmula simples como
+baseline e comparando os dois métodos. O pipeline original (German Credit)
+continua intacto.
+
+```bash
+python run_lifetime_pipeline.py       # ~40 s → reports/lifetime/
+python -m pytest -q tests             # 23 testes (v2 + v2.1)
+```
+
+**Por que um painel sintético?** O German Credit não tem originação,
+histórico mensal, recuperações nem ciclo macro. `src/data/panel.py` gera
+8.000 contratos × 54 meses (safras 2022–2024, parcelado com/sem garantia e
+rotativo, estados Corrente→30→60→Default com cura, pré-pagamento, uma
+recessão sintética, workouts de recuperação). Os mecanismos são explícitos
+— os estimadores são verificáveis contra a verdade do gerador. Nenhum número
+abaixo descreve carteira real.
+
+## O que foi adicionado
+
+| Módulo | Conteúdo |
+|---|---|
+| `src/modeling/survival/` | Kaplan-Meier (IC de Greenwood), incidência cumulativa com risco competitivo, Cox PH (statsmodels), Weibull AFT (MLE com censura), term structure (acumulada, marginal, condicional) |
+| `src/modeling/vintage_migration.py` | curvas de safra × MOB, atraso 30+ por mês, matriz de migração, lifetime PD por Markov, roll rates |
+| `src/modeling/macro_pit.py` | PIT × TTC (Vasicek), satélite probit(DR) ~ desemprego + PIB, cenários base/upside/downside, PD PIT ano a ano |
+| `src/modeling/lgd_ead_advanced.py` | LGD de workout descontada pela taxa efetiva, garantia/LTV, downturn LGD, CCF do rotativo, EAD amortizável (Price) |
+| `src/modeling/bayesian_pd.py` | PD Beta-Binomial por segmento com prior empírico e shrinkage (credibilidade) |
+| `src/modeling/lifetime_ecl.py` | ECL lifetime por contrato (staging com backstop de 30 DPD + SICR), cenários ponderados, waterfall de drivers |
+| `src/validation/validation_pack.py` | validation pack automático (discriminação, calibração, estabilidade, backtesting por safra, benchmarking, sensibilidade, limitações, inventário) |
+| `docs/model_risk/` | model card, inventário, políticas de validação, mudança e monitoramento, limitações |
+
+## Resultados (execução real, `reports/lifetime/summary.json`)
+
+**Benchmark de lifetime PD da carteira (meses desde a originação):**
+
+| Meses | Kaplan-Meier | Incidência cumulativa (risco competitivo) | Cox PH | Weibull AFT | Markov | Fórmula simples (v2) |
+|---|---|---|---|---|---|---|
+| 12 | 5,0% | 4,7% | 4,4% | 4,4% | 4,8% | 5,0% |
+| 24 | 12,7% | 11,3% | 12,1% | 11,1% | 9,5% | 9,8% |
+| 36 | 18,6% | 14,9% | 18,2% | 18,4% | 13,0% | 14,3% |
+| 48 | 20,8% | 15,8% | 20,5% | 25,6% | 15,7% | 18,6% |
+
+Leitura: a hazard tem pico por MOB (~15 meses), então a fórmula de hazard
+constante **subestima** a PD em 24–36 meses; o Weibull (hazard monotônica)
+superestima a cauda; a cadeia de Markov (com saída absorvente) coincide com
+a incidência cumulativa com risco competitivo, enquanto o KM — que trata
+pré-pagamento como censura — fica acima. Cox: hazard ratio do rating E
+vs A = 19,3.
+
+**Migração (mensal):** C→30 = 1,5%; 30→60 = 49%; 60→default = 59%; cura
+30→C = 40%; cura 60→C = 25%.
+
+**Macro / PIT:** satélite probit(DR) com R² = 0,74 (54 meses, HAC).
+Fator Ẑ por ano — base [0,37; 0,57; 0,66], upside [0,89; 1,59; 1,91],
+downside [−1,47; −3,06; −1,61].
+
+**LGD e CCF (workouts encerrados):** com garantia 40,5% (downturn 44,4%);
+sem garantia 88,9% (downturn 90,4%); CCF do rotativo 0,44.
+
+**ECL por cenário (cenário ponderado 50/20/30):**
+
+| Cenário | ECL |
+|---|---|
+| Base | 2.309.047 |
+| Upside | 2.234.252 |
+| Downside (com LGD downturn) | 3.023.874 |
+| **Ponderada** | **2.508.536 (+8,6% vs base)** |
+
+A ECL ponderada supera a do cenário base porque a perda é convexa no fator
+macro — o motivo pelo qual a IFRS 9 exige múltiplos cenários ponderados.
+
+**Waterfall de drivers** (`reports/lifetime/ecl_waterfall.csv`): 12m TTC
+todos em Stage 1 (428 mil) → staging (+2,5 mil; 32 contratos em Stage 2)
+→ PIT base (−128 mil; data-base em ciclo benigno) → ponderação de cenários
+(+171 mil) → LGD downturn (+7,5 mil) → Stage 3, workouts abertos
+(+2,03 mi; cobertura 70%).
+
+**Validation pack** (`reports/lifetime/validation_pack.md`): Gini 0,557; 1
+de 5 ratings fora do IC de Jeffreys (C subestimado, p = 0,004); PSI do mix
+de rating 0,002; backtesting por safra com 3 safras em vermelho — 2023Q3 e
+2023Q4 (observado ≈ 2,1–2,5× o previsto, primeiro ano coincidindo com a
+recessão, que a PD na originação não antecipava) e 2022Q2 (superestima).
+Conclusão automática: *aprovado com ressalvas para uso em PoC*.
 
 ---
 
@@ -765,7 +855,7 @@ As melhorias planejadas concentram-se em:
 
 # Versão
 
-**v2.0.0 — Setembro de 2026**
+**v2.1.0 — Setembro de 2026** (extensão lifetime/forward-looking) · **v2.0.0 — Setembro de 2026**
 
 ---
 

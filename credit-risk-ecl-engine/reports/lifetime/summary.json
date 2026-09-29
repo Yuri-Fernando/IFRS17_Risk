@@ -1,0 +1,596 @@
+{
+  "version": "2.1.0",
+  "seed": 2026,
+  "elapsed_seconds": 39.5,
+  "panel": {
+    "n_loans": 8000,
+    "n_rows": 220299,
+    "n_defaults": 1181,
+    "rho": 0.12
+  },
+  "survival": {
+    "pd12_km": 0.05004592669862784,
+    "weibull_shape": 1.4436480994337961,
+    "cox": [
+      {
+        "covariate": "grade_B",
+        "coef": 0.9917,
+        "se": 0.1442,
+        "hazard_ratio": 2.6957
+      },
+      {
+        "covariate": "grade_C",
+        "coef": 1.7616,
+        "se": 0.137,
+        "hazard_ratio": 5.8218
+      },
+      {
+        "covariate": "grade_D",
+        "coef": 2.3593,
+        "se": 0.1389,
+        "hazard_ratio": 10.5832
+      },
+      {
+        "covariate": "grade_E",
+        "coef": 2.9582,
+        "se": 0.1397,
+        "hazard_ratio": 19.2625
+      },
+      {
+        "covariate": "revolving",
+        "coef": -0.1076,
+        "se": 0.0707,
+        "hazard_ratio": 0.898
+      },
+      {
+        "covariate": "secured",
+        "coef": -0.0361,
+        "se": 0.0769,
+        "hazard_ratio": 0.9646
+      }
+    ],
+    "benchmark": [
+      {
+        "months": 12,
+        "kaplan_meier": 0.05005,
+        "cif_competing_risk": 0.04662,
+        "cox_ph": 0.0436,
+        "weibull_aft": 0.04392,
+        "markov_chain": 0.04838,
+        "simple_formula_v2": 0.05005
+      },
+      {
+        "months": 24,
+        "kaplan_meier": 0.12741,
+        "cif_competing_risk": 0.1125,
+        "cox_ph": 0.12106,
+        "weibull_aft": 0.11136,
+        "markov_chain": 0.095,
+        "simple_formula_v2": 0.09759
+      },
+      {
+        "months": 36,
+        "kaplan_meier": 0.18648,
+        "cif_competing_risk": 0.14909,
+        "cox_ph": 0.18181,
+        "weibull_aft": 0.18418,
+        "markov_chain": 0.1304,
+        "simple_formula_v2": 0.14275
+      },
+      {
+        "months": 48,
+        "kaplan_meier": 0.20771,
+        "cif_competing_risk": 0.15844,
+        "cox_ph": 0.2049,
+        "weibull_aft": 0.25552,
+        "markov_chain": 0.15726,
+        "simple_formula_v2": 0.18565
+      }
+    ]
+  },
+  "roll_rates": {
+    "C_to_30": 0.014536602168155392,
+    "30_to_60": 0.4927536231884058,
+    "60_to_default": 0.5869781312127237,
+    "cure_30": 0.39942028985507244,
+    "cure_60": 0.24900596421471172
+  },
+  "satellite": {
+    "params": {
+      "const": -6.005058924571853,
+      "unemployment": 0.47082721326363125,
+      "gdp_growth": 0.11448722144820869
+    },
+    "bse": {
+      "const": 1.2427039314746897,
+      "unemployment": 0.13497891169957904,
+      "gdp_growth": 0.08032315955228779
+    },
+    "r2": 0.7421838267021297,
+    "n_months": 49,
+    "fitted_probit_mean": -1.7776988097594069,
+    "resid_sd": 0.21737889360808976
+  },
+  "scenario_z": {
+    "base": [
+      0.372629394226653,
+      0.5656240461343952,
+      0.6621213720882669
+    ],
+    "upside": [
+      0.8930942452562036,
+      1.5926038779321348,
+      1.9096116743579206
+    ],
+    "downside": [
+      -1.4747696691582777,
+      -3.059808651287203,
+      -1.612348761979125
+    ]
+  },
+  "lgd": {
+    "secured": {
+      "lgd": 0.4048698537839954,
+      "downturn_lgd": 0.44366998937328417,
+      "n_downturn": 187
+    },
+    "unsecured": {
+      "lgd": 0.8885018647312903,
+      "downturn_lgd": 0.9039987011141968,
+      "n_downturn": 465
+    },
+    "n_closed": 934,
+    "n_open_workouts": 247,
+    "resolution_bias_note": "workouts abertos excluídos; LGD pode estar subestimada se recuperações lentas forem piores"
+  },
+  "ccf": {
+    "ccf_mean": 0.4375637653009203,
+    "ccf_median": 0.3977940304841521,
+    "n": 504,
+    "definition": "CCF = (EAD − sacado 12m antes) / (limite − sacado 12m antes), clip [0,1]"
+  },
+  "ecl": {
+    "by_scenario": {
+      "base": 2309047.2115999623,
+      "upside": 2234252.0270472337,
+      "downside": 3023874.171963185
+    },
+    "weights": {
+      "base": 0.5,
+      "upside": 0.2,
+      "downside": 0.3
+    },
+    "weighted": 2508536.2627983834,
+    "weighted_minus_base": 199489.05119842105,
+    "stage3": 2006056.7853054355,
+    "by_stage_base": [
+      {
+        "stage": 1.0,
+        "n": 3039.0,
+        "ead": 22109033.6012,
+        "ecl": 231451.1121,
+        "coverage": 0.0105
+      },
+      {
+        "stage": 2.0,
+        "n": 32.0,
+        "ead": 212033.551,
+        "ecl": 71539.3142,
+        "coverage": 0.3374
+      },
+      {
+        "stage": 3.0,
+        "n": 247.0,
+        "ead": 2860778.724,
+        "ecl": 2006056.7853,
+        "coverage": 0.7012
+      }
+    ],
+    "book": {
+      "n": 3071,
+      "n_open_workouts": 247
+    }
+  },
+  "waterfall": [
+    {
+      "step": "1. ECL 12m, todos em Stage 1, PD TTC (KM)",
+      "ecl": 428369.3,
+      "delta": 428369.3
+    },
+    {
+      "step": "2. + staging (lifetime p/ Stage 2: SICR + 30 DPD)",
+      "ecl": 430908.75,
+      "delta": 2539.45
+    },
+    {
+      "step": "3. + PIT no cenário base",
+      "ecl": 302990.43,
+      "delta": -127918.32
+    },
+    {
+      "step": "4. + ponderação de cenários (50/20/30)",
+      "ecl": 473949.27,
+      "delta": 170958.85
+    },
+    {
+      "step": "5. + LGD downturn no cenário adverso",
+      "ecl": 481435.2,
+      "delta": 7485.93
+    },
+    {
+      "step": "6. + Stage 3 (workouts abertos)",
+      "ecl": 2508536.26,
+      "delta": 2027101.06
+    }
+  ],
+  "sensitivity": [
+    {
+      "parameter": "peso downside",
+      "value": 0.2,
+      "ecl_weighted": 2437053.57
+    },
+    {
+      "parameter": "peso downside",
+      "value": 0.3,
+      "ecl_weighted": 2508536.26
+    },
+    {
+      "parameter": "peso downside",
+      "value": 0.4,
+      "ecl_weighted": 2580018.96
+    },
+    {
+      "parameter": "peso downside",
+      "value": 0.5,
+      "ecl_weighted": 2651501.65
+    },
+    {
+      "parameter": "rho (correlação de ativos)",
+      "value": 0.08,
+      "ecl_weighted": 2536106.53
+    },
+    {
+      "parameter": "rho (correlação de ativos)",
+      "value": 0.12,
+      "ecl_weighted": 2508536.26
+    },
+    {
+      "parameter": "rho (correlação de ativos)",
+      "value": 0.2,
+      "ecl_weighted": 2454412.2
+    }
+  ],
+  "validation": {
+    "discrimination": {
+      "auc": 0.7784788486207288,
+      "gini": 0.5569576972414576,
+      "ks": 0.44138004959765964,
+      "n": 7226
+    },
+    "calibration": [
+      {
+        "grade": "A",
+        "n": 1773,
+        "defaults": 22,
+        "predicted_pd": 0.0095,
+        "observed_dr": 0.0124,
+        "jeffreys_low": 0.008,
+        "jeffreys_high": 0.0184,
+        "binomial_p": 0.2186,
+        "result": "ok"
+      },
+      {
+        "grade": "B",
+        "n": 2167,
+        "defaults": 56,
+        "predicted_pd": 0.0232,
+        "observed_dr": 0.0258,
+        "jeffreys_low": 0.0198,
+        "jeffreys_high": 0.0332,
+        "binomial_p": 0.3912,
+        "result": "ok"
+      },
+      {
+        "grade": "C",
+        "n": 1826,
+        "defaults": 107,
+        "predicted_pd": 0.0443,
+        "observed_dr": 0.0586,
+        "jeffreys_low": 0.0485,
+        "jeffreys_high": 0.0701,
+        "binomial_p": 0.0044,
+        "result": "subestima"
+      },
+      {
+        "grade": "D",
+        "n": 919,
+        "defaults": 95,
+        "predicted_pd": 0.0912,
+        "observed_dr": 0.1034,
+        "jeffreys_low": 0.0849,
+        "jeffreys_high": 0.1243,
+        "binomial_p": 0.2071,
+        "result": "ok"
+      },
+      {
+        "grade": "E",
+        "n": 541,
+        "defaults": 93,
+        "predicted_pd": 0.1807,
+        "observed_dr": 0.1719,
+        "jeffreys_low": 0.1419,
+        "jeffreys_high": 0.2054,
+        "binomial_p": 0.6548,
+        "result": "ok"
+      }
+    ],
+    "grade_mix_psi": 0.0021679558977815766,
+    "vintage_backtest": [
+      {
+        "cohort": "2022Q1",
+        "n": 684,
+        "observed": 0.0263,
+        "predicted": 0.0287,
+        "ratio_obs_pred": 0.9174,
+        "traffic_light": "green"
+      },
+      {
+        "cohort": "2022Q2",
+        "n": 682,
+        "observed": 0.0132,
+        "predicted": 0.0277,
+        "ratio_obs_pred": 0.4768,
+        "traffic_light": "red"
+      },
+      {
+        "cohort": "2022Q3",
+        "n": 712,
+        "observed": 0.0169,
+        "predicted": 0.0249,
+        "ratio_obs_pred": 0.6775,
+        "traffic_light": "amber"
+      },
+      {
+        "cohort": "2022Q4",
+        "n": 699,
+        "observed": 0.0229,
+        "predicted": 0.0257,
+        "ratio_obs_pred": 0.8892,
+        "traffic_light": "green"
+      },
+      {
+        "cohort": "2023Q1",
+        "n": 718,
+        "observed": 0.0348,
+        "predicted": 0.0235,
+        "ratio_obs_pred": 1.4825,
+        "traffic_light": "amber"
+      },
+      {
+        "cohort": "2023Q2",
+        "n": 743,
+        "observed": 0.0283,
+        "predicted": 0.0269,
+        "ratio_obs_pred": 1.0517,
+        "traffic_light": "green"
+      },
+      {
+        "cohort": "2023Q3",
+        "n": 726,
+        "observed": 0.073,
+        "predicted": 0.0293,
+        "ratio_obs_pred": 2.4943,
+        "traffic_light": "red"
+      },
+      {
+        "cohort": "2023Q4",
+        "n": 755,
+        "observed": 0.094,
+        "predicted": 0.0453,
+        "ratio_obs_pred": 2.0762,
+        "traffic_light": "red"
+      },
+      {
+        "cohort": "2024Q1",
+        "n": 753,
+        "observed": 0.1116,
+        "predicted": 0.0849,
+        "ratio_obs_pred": 1.3146,
+        "traffic_light": "amber"
+      },
+      {
+        "cohort": "2024Q2",
+        "n": 754,
+        "observed": 0.0849,
+        "predicted": 0.1315,
+        "ratio_obs_pred": 0.6454,
+        "traffic_light": "amber"
+      }
+    ]
+  },
+  "bayesian_pd": [
+    {
+      "segment": "A·installment",
+      "n": 1060,
+      "defaults": 14,
+      "raw_pd": 0.01321,
+      "posterior_mean": 0.01405,
+      "ci_low": 0.00872,
+      "ci_high": 0.02039,
+      "credibility_Z": 0.97813,
+      "prior_alpha": 1.22358,
+      "prior_beta": 22.48048
+    },
+    {
+      "segment": "A·revolving",
+      "n": 713,
+      "defaults": 8,
+      "raw_pd": 0.01122,
+      "posterior_mean": 0.01252,
+      "ci_low": 0.00662,
+      "ci_high": 0.01992,
+      "credibility_Z": 0.96782,
+      "prior_alpha": 1.22358,
+      "prior_beta": 22.48048
+    },
+    {
+      "segment": "B·installment",
+      "n": 1298,
+      "defaults": 33,
+      "raw_pd": 0.02542,
+      "posterior_mean": 0.02589,
+      "ci_low": 0.01914,
+      "ci_high": 0.03346,
+      "credibility_Z": 0.98207,
+      "prior_alpha": 1.22358,
+      "prior_beta": 22.48048
+    },
+    {
+      "segment": "B·revolving",
+      "n": 869,
+      "defaults": 23,
+      "raw_pd": 0.02647,
+      "posterior_mean": 0.02714,
+      "ci_low": 0.01884,
+      "ci_high": 0.03664,
+      "credibility_Z": 0.97345,
+      "prior_alpha": 1.22358,
+      "prior_beta": 22.48048
+    },
+    {
+      "segment": "C·installment",
+      "n": 1070,
+      "defaults": 67,
+      "raw_pd": 0.06262,
+      "posterior_mean": 0.06238,
+      "ci_low": 0.05083,
+      "ci_high": 0.07484,
+      "credibility_Z": 0.97833,
+      "prior_alpha": 1.22358,
+      "prior_beta": 22.48048
+    },
+    {
+      "segment": "C·revolving",
+      "n": 756,
+      "defaults": 40,
+      "raw_pd": 0.05291,
+      "posterior_mean": 0.05287,
+      "ci_low": 0.04038,
+      "ci_high": 0.06667,
+      "credibility_Z": 0.9696,
+      "prior_alpha": 1.22358,
+      "prior_beta": 22.48048
+    },
+    {
+      "segment": "D·installment",
+      "n": 538,
+      "defaults": 53,
+      "raw_pd": 0.09851,
+      "posterior_mean": 0.09653,
+      "ci_low": 0.0769,
+      "ci_high": 0.1178,
+      "credibility_Z": 0.9578,
+      "prior_alpha": 1.22358,
+      "prior_beta": 22.48048
+    },
+    {
+      "segment": "D·revolving",
+      "n": 381,
+      "defaults": 42,
+      "raw_pd": 0.11024,
+      "posterior_mean": 0.1068,
+      "ci_low": 0.08273,
+      "ci_high": 0.13309,
+      "credibility_Z": 0.94143,
+      "prior_alpha": 1.22358,
+      "prior_beta": 22.48048
+    },
+    {
+      "segment": "E·installment",
+      "n": 320,
+      "defaults": 60,
+      "raw_pd": 0.1875,
+      "posterior_mean": 0.17813,
+      "ci_low": 0.14532,
+      "ci_high": 0.21307,
+      "credibility_Z": 0.93103,
+      "prior_alpha": 1.22358,
+      "prior_beta": 22.48048
+    },
+    {
+      "segment": "E·revolving",
+      "n": 221,
+      "defaults": 33,
+      "raw_pd": 0.14932,
+      "posterior_mean": 0.13986,
+      "ci_low": 0.1052,
+      "ci_high": 0.17786,
+      "credibility_Z": 0.90313,
+      "prior_alpha": 1.22358,
+      "prior_beta": 22.48048
+    }
+  ],
+  "stage2_detail": {
+    "stage2_ecl_survival": 75706.98853662542
+  },
+  "audit_log": [
+    {
+      "timestamp": "2026-09-29T00:44:28.634096+00:00",
+      "step": "panel",
+      "status": "OK",
+      "details": {
+        "n_loans": 8000,
+        "n_panel_rows": 220299,
+        "n_defaults": 1181,
+        "rho": 0.12
+      }
+    },
+    {
+      "timestamp": "2026-09-29T00:44:30.002539+00:00",
+      "step": "survival",
+      "status": "OK",
+      "details": {
+        "pd12_km": 0.05004592669862784,
+        "cox_hr": {
+          "grade_B": 2.696,
+          "grade_C": 5.822,
+          "grade_D": 10.583,
+          "grade_E": 19.263,
+          "revolving": 0.898,
+          "secured": 0.965
+        },
+        "weibull_shape": 1.4436480994337961
+      }
+    },
+    {
+      "timestamp": "2026-09-29T00:44:31.137029+00:00",
+      "step": "satellite",
+      "status": "OK",
+      "details": {
+        "params": {
+          "const": -6.005058924571853,
+          "unemployment": 0.47082721326363125,
+          "gdp_growth": 0.11448722144820869
+        },
+        "r2": 0.7421838267021297,
+        "scenario_z": {
+          "base": [
+            0.373,
+            0.566,
+            0.662
+          ],
+          "upside": [
+            0.893,
+            1.593,
+            1.91
+          ],
+          "downside": [
+            -1.475,
+            -3.06,
+            -1.612
+          ]
+        }
+      }
+    }
+  ]
+}
